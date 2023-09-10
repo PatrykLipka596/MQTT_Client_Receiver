@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"os"
 	"os/signal"
 	"syscall"
+
+	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 var amount int = 0
@@ -39,6 +40,7 @@ func main() {
 	opts.SetClientID("go_mqtt_client_2")
 	opts.SetUsername("mosquitto_2")
 	opts.SetPassword("public")
+	opts.SetKeepAlive(50000)
 	opts.SetDefaultPublishHandler(messagePubHandler)
 	opts.OnConnect = connectHandler
 	opts.OnConnectionLost = connectLostHandler
